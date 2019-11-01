@@ -15,8 +15,18 @@ public class MyView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         Paint paint = new Paint();
-        paint.setColor(Color.BLUE);
+
+        paint.setColor(Color.GREEN);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawLine(getWidth(), 0, 0, getHeight(), paint);
+
+        paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(100, 100, 300, 300, paint);
+        float
+                x = getWidth() / 2,
+                y = getHeight() / 2,
+                r = Math.min(getWidth(), getHeight()) / 3;
+        
+        canvas.drawCircle( x, y, r, paint);
     }
 }
