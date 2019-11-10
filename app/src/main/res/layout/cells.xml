@@ -12,10 +12,11 @@
 
         <GridLayout
             android:id="@+id/CellsLayout"
-            android:background="@android:color/holo_green_light"
+            android:background="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:paddingLeft="9.5dp"
+            android:paddingRight="9.5dp"
         >
         </GridLayout>
     </HorizontalScrollView>
