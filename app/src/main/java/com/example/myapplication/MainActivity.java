@@ -1,84 +1,41 @@
 package com.example.myapplication;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.GridLayout;
+import android.widget.EditText;
+import android.widget.TextView;
 
-public class MainActivity extends Activity implements OnClickListener{
-
-    private static int WIDTH = 6;
-    private static int HEIGHT = 10;
-
-    private static Button[][] cells;
-
+public class MainActivity extends Activity {
+    // Вызывается при создании Активности
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cells);
-        makeCells();
-
-        generate();
-
+        // Инициализирует Активность.
+        setContentView(R.layout.activity_main);
     }
 
-    public static void generate() {
-        int number = 0;
+    /** Вызывается при нажатии пользователем на кнопку Решить */
+        public void solveEquation(View view) {
+            double a = Double.parseDouble( ((EditText)
+                    findViewById(R.id.coefficient_a)).getText().toString());
+            double b = Double.parseDouble( ((EditText)
+                    findViewById(R.id.coefficient_b)).getText().toString());
+            double c = Double.parseDouble( ((EditText)
+                    findViewById(R.id.coefficient_c)).getText().toString());
 
-        for (int i = 0; i < HEIGHT; i++){
-            for (int j = 0; j < WIDTH; j++) {
-                cells[i][j].setText(number + "");
+            double D = Math.pow(b, 2) - 4 * a * c;
+
+            TextView result = (TextView) findViewById(R.id.result);
+
+            if (D < 0) {
+                result.setText("Корней нет");
+            }else if(D == 0){
+                result.setText("" + String.valueOf(- b / (2 * a)));
+            }else {
+                result.setText("" + String.valueOf((- b + Math.pow(D, 0.5)) / (2 * a)) + "\n"
+                        + String.valueOf((- b - Math.pow(D, 0.5)) / (2 * a)));
             }
-
-            number++;
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        Button tappedCell = (Button) v;
-
-        int tappedX = getX(tappedCell);
-        int tappedY = getY(tappedCell);
-
-        for(int y = 0; y < HEIGHT; y++){
-            cells[y][tappedX].setBackgroundColor(Color.RED);
-        }
-
-        for(int x = 0; x < WIDTH; x++){
-            cells[tappedY][x].setBackgroundColor(Color.RED);
-        }
-
-    }
-
-    int getX(View v) {
-        return Integer.parseInt(((String) v.getTag()).split(",")[1]);
-    }
-
-    int getY(View v) {
-        return Integer.parseInt(((String) v.getTag()).split(",")[0]);
-    }
-
-    void makeCells() {
-        cells = new Button[HEIGHT][WIDTH];
-        GridLayout cellsLayout = findViewById(R.id.CellsLayout);
-        cellsLayout.removeAllViews();
-        cellsLayout.setColumnCount(WIDTH);
-        for (int i = 0; i < HEIGHT; i++)
-            for (int j = 0; j < WIDTH; j++) {
-                LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                cells[i][j] = (Button) inflater.inflate(R.layout.cell, cellsLayout, false);
-                cells[i][j].setOnClickListener(this);
-                cells[i][j].setTag(i + "," + j);
-                cellsLayout.addView(cells[i][j]);
-            }
-    }
 
 }
