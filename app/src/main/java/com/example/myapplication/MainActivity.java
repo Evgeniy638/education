@@ -1,41 +1,50 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-    // Вызывается при создании Активности
+
+    private String password = "ASDFGH";
+    private String login = "somebody";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Инициализирует Активность.
         setContentView(R.layout.activity_main);
     }
 
-    /** Вызывается при нажатии пользователем на кнопку Решить */
-        public void solveEquation(View view) {
-            double a = Double.parseDouble( ((EditText)
-                    findViewById(R.id.coefficient_a)).getText().toString());
-            double b = Double.parseDouble( ((EditText)
-                    findViewById(R.id.coefficient_b)).getText().toString());
-            double c = Double.parseDouble( ((EditText)
-                    findViewById(R.id.coefficient_c)).getText().toString());
+    public void logIn(View view) {
+        TextView viewResult = findViewById(R.id.result);
+        EditText viewPass = findViewById(R.id.password);
+        EditText viewLog = findViewById(R.id.login);
 
-            double D = Math.pow(b, 2) - 4 * a * c;
+        if(checkLoginAndPassword(viewLog.getText().toString(), viewPass.getText().toString())){
+            viewLog.setText("");
 
-            TextView result = (TextView) findViewById(R.id.result);
+            viewPass.setText("");
+            viewPass.setHint("На правой полке слева");
 
-            if (D < 0) {
-                result.setText("Корней нет");
-            }else if(D == 0){
-                result.setText("" + String.valueOf(- b / (2 * a)));
-            }else {
-                result.setText("" + String.valueOf((- b + Math.pow(D, 0.5)) / (2 * a)) + "\n"
-                        + String.valueOf((- b - Math.pow(D, 0.5)) / (2 * a)));
-            }
+            viewResult.setText("Вы успешно авторизовались");
+            viewResult.setTextColor(Color.GREEN);
+        }else {
+            viewLog.setText("");
+            viewLog.setHint("кто-то");
+
+            viewPass.setText("");
+            viewPass.setHint("На правой полке слева");
+
+            viewResult.setText("Логин и/или пароль введены неправильно");
+            viewResult.setTextColor(Color.RED);
         }
+    }
+
+    private boolean checkLoginAndPassword(String login, String password){
+        return this.login.equals(login) && this.password.equals(password);
+    }
 
 }
