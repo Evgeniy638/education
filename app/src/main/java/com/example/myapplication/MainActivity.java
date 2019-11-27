@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,21 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        this.login = data.getStringExtra("newLogin");
+        this.password = data.getStringExtra("newPassword");
+
+        ((EditText)findViewById(R.id.login)).setText(login);
+    }
+
+    public void registration(View view){
+        ((TextView)findViewById(R.id.result)).setText("");
+
+        Intent i = new Intent(MainActivity.this, ActivityRegistration.class);
+        startActivityForResult(i, 1);
     }
 
     public void logIn(View view) {
