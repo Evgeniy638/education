@@ -5,4 +5,8 @@
     <string name="enter">Ввойти</string>
     <string name="textEnterLog">Введите логин:</string>
     <string name="textEnterPass">Введите пароль:</string>
+    <string name="registration">Регистрация</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="newLogin">новый логин</string>
+    <string name="newPassword">новый пароль</string>
 </resources>

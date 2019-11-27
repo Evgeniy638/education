@@ -11,12 +11,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textEnterLog"/>
+            android:text="@string/newLogin"/>
 
         <EditText
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:id="@+id/login"
+            android:id="@+id/newLogin"
             android:hint="@string/login" />
     </LinearLayout>
 
@@ -27,36 +27,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textEnterPass"/>
+            android:text="@string/newPassword"/>
 
         <EditText
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:id="@+id/password"
+            android:id="@+id/newPassword"
             android:inputType="textPassword"
             android:hint="@string/password"/>
     </LinearLayout>
 
-    <LinearLayout
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enter"
-            android:onClick="logIn"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/registration"
-            android:onClick="registration"/>
-    </LinearLayout>
+        android:text="@string/sign_up"
+        android:onClick="changePasswordAndLogin"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/result"/>
+        android:id="@+id/resultRegistration"/>
 </LinearLayout>
