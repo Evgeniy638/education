@@ -30,7 +30,7 @@
             android:textSize="8pt"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
-            android:text="Сейчас идет 13 неделя"/>
+            android:text="Сейчас идет 14 неделя"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -55,206 +55,131 @@
         android:layout_marginBottom="10dp">
 
         <Button
-            android:layout_width="63dp"
-            android:layout_height="63dp"
-            android:background="@drawable/mybutton"
+            android:onClick="chooseMonday"
+            android:id="@+id/monday"
+            style="@style/daysOfWeek"
             android:layout_marginRight="3dp"
-            android:padding="0dp"
-            android:textColor="#fff"
-            android:text="ПН"
-            android:textSize="12pt"
+            android:text="@string/monday"
             android:layout_marginEnd="3dp" />
 
         <Button
-            android:layout_width="63dp"
-            android:layout_height="63dp"
-            android:background="@drawable/mybutton"
+            android:id="@+id/tuesday"
+            style="@style/daysOfWeek"
+            android:layout_marginEnd="3dp"
             android:layout_marginRight="3dp"
-            android:padding="0dp"
-            android:textColor="#fff"
-            android:text="ВТ"
-            android:textSize="12pt"
+            android:onClick="chooseTuesday"
+            android:text="@string/tuesday" />
+
+        <Button
+            android:onClick="chooseWednesday"
+            android:id="@+id/wednesday"
+            style="@style/daysOfWeek"
+            android:layout_marginRight="3dp"
+            android:text="@string/wednesday"
             android:layout_marginEnd="3dp" />
 
         <Button
-            android:layout_width="63dp"
-            android:layout_height="63dp"
-            android:background="@drawable/mybutton"
+            android:onClick="chooseThursday"
+            android:id="@+id/thursday"
+            style="@style/daysOfWeek"
             android:layout_marginRight="3dp"
-            android:padding="0dp"
-            android:textColor="#fff"
-            android:text="СР"
-            android:textSize="12pt"
+            android:text="@string/thursday"
             android:layout_marginEnd="3dp" />
 
         <Button
-            android:layout_width="63dp"
-            android:layout_height="63dp"
-            android:background="@drawable/mybutton"
+            android:onClick="chooseFriday"
+            android:id="@+id/friday"
+            style="@style/daysOfWeek"
             android:layout_marginRight="3dp"
-            android:padding="0dp"
-            android:textColor="#fff"
-            android:text="ЧТ"
-            android:textSize="12pt"
+            android:text="@string/friday"
             android:layout_marginEnd="3dp" />
 
         <Button
-            android:layout_width="63dp"
-            android:layout_height="63dp"
-            android:background="@drawable/mybutton"
-            android:layout_marginRight="3dp"
-            android:padding="0dp"
-            android:textColor="#fff"
-            android:text="ПТ"
-            android:textSize="12pt"
-            android:layout_marginEnd="3dp" />
-
-        <Button
-            android:layout_width="63dp"
-            android:layout_height="63dp"
-            android:background="@drawable/mybutton"
-            android:padding="0dp"
-            android:textColor="#fff"
-            android:text="СБ"
-            android:textSize="12pt" />
+            android:onClick="chooseSaturday"
+            android:id="@+id/saturday"
+            style="@style/daysOfWeek"
+            android:text="@string/saturday"/>
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/schedule_day"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#9e9e9e"
-            android:layout_margin="1dp">
+            android:layout_height="match_parent"
+            android:id="@+id/schedule_day"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/lesson"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <!--        <LinearLayout-->
+            <!--            style="@style/lessonLayout">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="4"
-                    android:textSize="18pt" />
+            <!--            <LinearLayout-->
+            <!--                style="@style/informationAboutLesson">-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#c4c2c2"
-                    android:orientation="vertical">
+            <!--                <TextView-->
+            <!--                    style="@style/numberOfLesson" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="14:50"
-                        android:textColor="#2172ff"
-                        android:textSize="9pt" />
+            <!--                <LinearLayout-->
+            <!--                    style="@style/wrapTimeLesson">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="16:20"
-                        android:textColor="#2172ff"
-                        android:textSize="9pt" />
+            <!--                    <TextView-->
+            <!--                        style="@style/timeLesson"-->
+            <!--                        android:text="14:50"/>-->
 
-                </LinearLayout>
+            <!--                    <TextView-->
+            <!--                        style="@style/timeLesson"-->
+            <!--                        android:text="16:20" />-->
 
+            <!--                </LinearLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:layout_gravity="center"
-                    android:paddingTop="5dp"
-                    android:paddingLeft="3dp"
-                    android:text="Информатика"
-                    android:textSize="20sp" />
+            <!--                <LinearLayout-->
+            <!--                    style="@style/wrapTitleOfLesson">-->
+            <!--                    <TextView-->
+            <!--                        style="@style/titleOfLesson"-->
+            <!--                        android:text="Информатика"/>-->
+            <!--                </LinearLayout>-->
+            <!--                -->
+            <!--                    <LinearLayout-->
+            <!--                        style="@style/additionalInformation">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:gravity="right"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="#5996ff">
+            <!--                        <TextView-->
+            <!--                            style="@style/typeOfLesson"-->
+            <!--                            android:text="ЛК" />-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="35dp"
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:padding="3dp"
-                            android:text="ЛК"
-                            android:textSize="9pt" />
+            <!--                        <TextView-->
+            <!--                            style="@style/cabinet"-->
+            <!--                            android:text="А-10"/>-->
+            <!--                    </LinearLayout>-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="35dp"
-                            android:gravity="center"
-                            android:background="#c4c2c2"
-                            android:padding="3dp"
-                            android:text="А-10"
-                            android:textSize="9pt" />
-                    </LinearLayout>
-                </LinearLayout>
+            <!--        </LinearLayout>-->
 
+            <!--            <LinearLayout-->
+            <!--                style="@style/wrapHomeworkOrNote">-->
+
+            <!--                <TextView-->
+            <!--                    style="@style/textHomeworkOrNote"-->
+            <!--                    android:text="Д/З:"/>-->
+
+            <!--                <Button-->
+            <!--                    style="@style/buttonHomeworkOrNote"-->
+            <!--                    android:text="Изменить д/з"/>-->
+            <!--            </LinearLayout>-->
+
+            <!--            <LinearLayout-->
+            <!--                style="@style/wrapHomeworkOrNote">-->
+
+            <!--                <TextView-->
+            <!--                    style="@style/textHomeworkOrNote"-->
+            <!--                    android:text="заметка:"/>-->
+
+            <!--                <Button-->
+            <!--                    style="@style/buttonHomeworkOrNote"-->
+            <!--                    android:text="добавить заметку"/>-->
+            <!--            </LinearLayout>-->
+
+            <!--        </LinearLayout>-->
         </LinearLayout>
+    </ScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="10pt"
-                    android:padding="5dp"
-                    android:background="#aaaeb5"
-                    android:text="Д/З:"/>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#5996ff"
-                    android:text="Изменить д/з"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="10pt"
-                    android:padding="5dp"
-                    android:background="#aaaeb5"
-                    android:text="заметка:"/>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#5996ff"
-                    android:text="добавить заметку"/>
-            </LinearLayout>
-
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

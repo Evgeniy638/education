@@ -9,29 +9,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class AuthenticationActivity extends Activity {
-
-    private String password = "ASDFGH";
-    private String login = "somebody";
+    public static StudySchedule studySchedule = new StudySchedule();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.schedule);
+        setContentView(R.layout.activity_main);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        this.login = data.getStringExtra("newLogin");
-        this.password = data.getStringExtra("newPassword");
+        studySchedule.setLogin(data.getStringExtra("newLogin"));
+        studySchedule.setPassword(data.getStringExtra("newPassword"));
 
-        ((EditText)findViewById(R.id.login)).setText(login);
-    }
-
-    public void registration(View view){
-        ((TextView)findViewById(R.id.result)).setText("");
-
-        Intent i = new Intent(AuthenticationActivity.this, ActivityRegistration.class);
-        startActivityForResult(i, 1);
+        ((EditText)findViewById(R.id.login)).setText(studySchedule.getLogin());
     }
 
     public void logIn(View view) {
@@ -46,6 +37,9 @@ public class AuthenticationActivity extends Activity {
 
             viewResult.setText("Вы успешно авторизовались");
             viewResult.setTextColor(Color.GREEN);
+
+            Intent i = new Intent(AuthenticationActivity.this, ScheduleActivity.class);
+            startActivity(i);
         }else {
             viewLog.setText("");
 
@@ -57,7 +51,7 @@ public class AuthenticationActivity extends Activity {
     }
 
     private boolean checkLoginAndPassword(String login, String password){
-        return this.login.equals(login) && this.password.equals(password);
+        return studySchedule.getLogin().equals(login) && studySchedule.getPassword().equals(password);
     }
 
 }

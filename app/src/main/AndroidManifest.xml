@@ -17,8 +17,8 @@
         </activity>
 
         <activity
-            android:name=".ActivityRegistration"
-            android:label="Регистрация">
+            android:name=".ScheduleActivity"
+            android:label="Личный помощник">
         </activity>
     </application>
 
