@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class AuthenticationActivity extends Activity {
 
     private String password = "ASDFGH";
     private String login = "somebody";
@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.schedule);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
     public void registration(View view){
         ((TextView)findViewById(R.id.result)).setText("");
 
-        Intent i = new Intent(MainActivity.this, ActivityRegistration.class);
+        Intent i = new Intent(AuthenticationActivity.this, ActivityRegistration.class);
         startActivityForResult(i, 1);
     }
 
@@ -43,16 +43,13 @@ public class MainActivity extends Activity {
             viewLog.setText("");
 
             viewPass.setText("");
-            viewPass.setHint("На правой полке слева");
 
             viewResult.setText("Вы успешно авторизовались");
             viewResult.setTextColor(Color.GREEN);
         }else {
             viewLog.setText("");
-            viewLog.setHint("кто-то");
 
             viewPass.setText("");
-            viewPass.setHint("На правой полке слева");
 
             viewResult.setText("Логин и/или пароль введены неправильно");
             viewResult.setTextColor(Color.RED);

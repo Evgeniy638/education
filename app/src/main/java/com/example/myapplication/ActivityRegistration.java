@@ -26,8 +26,8 @@ public class ActivityRegistration extends Activity {
 
         String errorMessage = "";
 
-        if (newLogin.length() <= 0) errorMessage += "Вы не ввели логин \n";
-        if (newPassword.length() <= 0) errorMessage += "Вы не ввели пароль";
+        if (newLogin.length() <= 6) errorMessage += "Длина логина минимум 6 символов \n";
+        if (newPassword.length() <= 6) errorMessage += "Длина пароля минимум 6 символов";
 
         if (errorMessage.length() > 0){
             result.setTextColor(Color.RED);

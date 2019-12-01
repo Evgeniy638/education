@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ededed">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="0dp"
+            android:background="@drawable/week_selector"
+            android:text="⇐"
+            android:textColor="#0f67ff"
+            android:textSize="20pt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="Сейчас идет 13 неделя"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="0dp"
+            android:background="@drawable/week_selector"
+            android:text="⇒"
+            android:textColor="#0f67ff"
+            android:textSize="20pt" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:background="@drawable/mybutton"
+            android:layout_marginRight="3dp"
+            android:padding="0dp"
+            android:textColor="#fff"
+            android:text="ПН"
+            android:textSize="12pt"
+            android:layout_marginEnd="3dp" />
+
+        <Button
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:background="@drawable/mybutton"
+            android:layout_marginRight="3dp"
+            android:padding="0dp"
+            android:textColor="#fff"
+            android:text="ВТ"
+            android:textSize="12pt"
+            android:layout_marginEnd="3dp" />
+
+        <Button
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:background="@drawable/mybutton"
+            android:layout_marginRight="3dp"
+            android:padding="0dp"
+            android:textColor="#fff"
+            android:text="СР"
+            android:textSize="12pt"
+            android:layout_marginEnd="3dp" />
+
+        <Button
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:background="@drawable/mybutton"
+            android:layout_marginRight="3dp"
+            android:padding="0dp"
+            android:textColor="#fff"
+            android:text="ЧТ"
+            android:textSize="12pt"
+            android:layout_marginEnd="3dp" />
+
+        <Button
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:background="@drawable/mybutton"
+            android:layout_marginRight="3dp"
+            android:padding="0dp"
+            android:textColor="#fff"
+            android:text="ПТ"
+            android:textSize="12pt"
+            android:layout_marginEnd="3dp" />
+
+        <Button
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:background="@drawable/mybutton"
+            android:padding="0dp"
+            android:textColor="#fff"
+            android:text="СБ"
+            android:textSize="12pt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/schedule_day"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#9e9e9e"
+            android:layout_margin="1dp">
+
+            <LinearLayout
+                android:id="@+id/lesson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="4"
+                    android:textSize="18pt" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#c4c2c2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="14:50"
+                        android:textColor="#2172ff"
+                        android:textSize="9pt" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="16:20"
+                        android:textColor="#2172ff"
+                        android:textSize="9pt" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="3dp"
+                    android:text="Информатика"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="#5996ff">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:padding="3dp"
+                            android:text="ЛК"
+                            android:textSize="9pt" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:gravity="center"
+                            android:background="#c4c2c2"
+                            android:padding="3dp"
+                            android:text="А-10"
+                            android:textSize="9pt" />
+                    </LinearLayout>
+                </LinearLayout>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10pt"
+                    android:padding="5dp"
+                    android:background="#aaaeb5"
+                    android:text="Д/З:"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#5996ff"
+                    android:text="Изменить д/з"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10pt"
+                    android:padding="5dp"
+                    android:background="#aaaeb5"
+                    android:text="заметка:"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#5996ff"
+                    android:text="добавить заметку"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
