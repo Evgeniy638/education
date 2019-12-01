@@ -8,10 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
-
-    private String password = "ASDFGH";
-    private String login = "somebody";
+public class AuthenticationActivity extends Activity {
+    public static StudySchedule studySchedule = new StudySchedule();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,17 +19,10 @@ public class MainActivity extends Activity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        this.login = data.getStringExtra("newLogin");
-        this.password = data.getStringExtra("newPassword");
+        studySchedule.setLogin(data.getStringExtra("newLogin"));
+        studySchedule.setPassword(data.getStringExtra("newPassword"));
 
-        ((EditText)findViewById(R.id.login)).setText(login);
-    }
-
-    public void registration(View view){
-        ((TextView)findViewById(R.id.result)).setText("");
-
-        Intent i = new Intent(MainActivity.this, ActivityRegistration.class);
-        startActivityForResult(i, 1);
+        ((EditText)findViewById(R.id.login)).setText(studySchedule.getLogin());
     }
 
     public void logIn(View view) {
@@ -43,16 +34,16 @@ public class MainActivity extends Activity {
             viewLog.setText("");
 
             viewPass.setText("");
-            viewPass.setHint("На правой полке слева");
 
             viewResult.setText("Вы успешно авторизовались");
             viewResult.setTextColor(Color.GREEN);
+
+            Intent i = new Intent(AuthenticationActivity.this, ScheduleActivity.class);
+            startActivity(i);
         }else {
             viewLog.setText("");
-            viewLog.setHint("кто-то");
 
             viewPass.setText("");
-            viewPass.setHint("На правой полке слева");
 
             viewResult.setText("Логин и/или пароль введены неправильно");
             viewResult.setTextColor(Color.RED);
@@ -60,7 +51,7 @@ public class MainActivity extends Activity {
     }
 
     private boolean checkLoginAndPassword(String login, String password){
-        return this.login.equals(login) && this.password.equals(password);
+        return studySchedule.getLogin().equals(login) && studySchedule.getPassword().equals(password);
     }
 
 }
