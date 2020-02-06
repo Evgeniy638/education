@@ -5,13 +5,23 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class MainActivity extends Activity {
     private TextView textView;
@@ -36,16 +46,16 @@ public class MainActivity extends Activity {
     }
 
     protected BroadcastReceiver receiver = new BroadcastReceiver() {
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
-                JSONObject json = new JSONObject(intent.getStringExtra(GisService.INFO));
+                JSONObject json = new JSONObject(Objects.requireNonNull(intent.getStringExtra(GisService.INFO)));
 
-                JSONArray gisArray = json.getJSONArray("gis");
+                textView.setText(json.toString());
 
-                textView.setText(gisArray.toString());
             } catch (JSONException e) {
-                Toast.makeText(MainActivity.this, "Wrong JSON format", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
             }
         }
     };

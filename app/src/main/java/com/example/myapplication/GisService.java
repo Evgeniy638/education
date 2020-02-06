@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -61,13 +62,13 @@ public class GisService extends Service {
             String result;
 
             try {
-                URL url = new URL("http://icomms.ru/inf/meteo.php?tid=35");
+                URL url = new URL("https://samples.openweathermap.org/data/2.5/weather?id=2172797&appid=b6907d289e10d714a6e88b30761fae22");
 
                 Scanner in = new Scanner((InputStream) url.getContent());
 
-                result = "{\"gis\":" + in.nextLine() + "}";
+                result = in.nextLine();
             } catch (Exception e) {
-                result = "не удалось загруть информацию о погоду";
+                result = "не удалось загруть информацию о погоде";
             }
 
             return result;
