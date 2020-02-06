@@ -4,25 +4,17 @@
     android:layout_width="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/img"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginBottom="35dp"/>
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:visibility="invisible"/>
-
-    <Button
-        android:layout_marginTop="40dp"
-        android:id="@+id/download"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="12pt"
-        android:text="загрузить фото" />
-
+        android:layout_height="match_parent"
+        android:id="@+id/SCROLLER_ID"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/temp_txt"
+            android:gravity="center"/>
+    </ScrollView>
 
 </LinearLayout>
