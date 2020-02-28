@@ -13,6 +13,8 @@ public class MyDraw extends View {
     float width;
     float height;
 
+    int strokeWidth = 5;
+
     public MyDraw(Context context) {
         super(context);
     }
@@ -25,6 +27,8 @@ public class MyDraw extends View {
         width = getWidth();
         height = getHeight();
 
+        float rSun = Math.min(width, height) * 0.07f;
+
         drawBackgroundGrass(0, height * 0.767f, width, height, canvas);
         drawTree(width * 0.438f, height * 0.324f,
                 width * 0.655f, height * 0.93f, canvas);
@@ -32,6 +36,32 @@ public class MyDraw extends View {
                 width * 0.941f, height * 0.874f, canvas);
         drawHouse(width * 0.127f, height * 0.392f,
                 width * 0.378f, height * 0.907f, canvas);
+        drawSun(rSun * 0.7f, rSun * 0.7f, rSun, canvas);
+    }
+
+    private void drawSun(float x0, float y0, float r, Canvas canvas){
+        paint.setColor(Color.YELLOW);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawCircle(x0, y0, r, paint);
+
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(strokeWidth);
+
+        float R = 3.5f * r;
+        float angle0 = (float) (Math.PI / 10);
+        float dAngle = (float) (Math.PI / 50);
+
+        for (float i = 0; i < 16; i++){
+            if(i % 3 == 0 && i != 15 && i != 0) continue;
+
+            float currentAngle = angle0 + dAngle * i;
+            float l = (float) (R / Math.cos(Math.PI / 4 - currentAngle));
+
+            float x = (float) (l * Math.cos(currentAngle));
+            float y = (float) (l * Math.sin(currentAngle));
+
+            canvas.drawLine(x0, y0, x, y, paint);
+        }
     }
 
     private void drawHouse(float x0, float y0, float x1, float y1, Canvas canvas){
@@ -60,7 +90,7 @@ public class MyDraw extends View {
 
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1);
+        paint.setStrokeWidth(strokeWidth);
         canvas.drawPath(roof, paint);
 
         //рисую окно на крыше
@@ -70,7 +100,7 @@ public class MyDraw extends View {
 
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1);
+        paint.setStrokeWidth(strokeWidth);
 
         float angle = (float) (Math.PI / 7);
         float j = -3 * angle;
@@ -84,7 +114,7 @@ public class MyDraw extends View {
 
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1);
+        paint.setStrokeWidth(strokeWidth);
         canvas.drawCircle(xWindow, yWindow, r, paint);
 
         //рисую основную часть дома
@@ -116,10 +146,66 @@ public class MyDraw extends View {
 
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1);
+        paint.setStrokeWidth(strokeWidth);
         canvas.drawPath(main, paint);
 
-        //рисую окно на основной части дома
+        drawMainWindow(x0 + (x1 - x0) * 0.04f, y0 + (y1 - y0) * 0.579f,
+                x0 + (x1 - x0) * 0.346f, y0 + (y1 - y0) * 0.829f, canvas);
+
+        drawDoor(x0 + (x1 - x0) * 0.558f, y0 + (y1 - y0) * 0.579f,
+                x0 + (x1 - x0) * 0.892f, y1, canvas);
+    }
+
+    private void drawMainWindow(float x0, float y0, float x1, float y1, Canvas canvas){
+        float dx = 0.158f * (x1 - x0);
+        float dy = dx;
+
+
+        paint.setColor(Color.BLUE);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(strokeWidth);
+        for (float x = x0; x < x1; x += dx){
+            canvas.drawLine(x, y0, x, y1, paint);
+        }
+
+        for (float y = y0; y < y1; y += dy){
+            canvas.drawLine(x0, y, x1, y, paint);
+        }
+
+        paint.setColor(Color.BLACK);
+        canvas.drawRect(x0, y0, x1, y1, paint);
+    }
+
+    private void drawDoor(float x0, float y0, float x1, float y1, Canvas canvas){
+        float dx = Math.max(x1 - x0, y1 - y0) * 0.16f;
+        dx = Math.min(dx, 20);
+
+        paint.setColor(Color.rgb(192, 192, 192));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(strokeWidth);
+
+        for(float x = x0 + dx; x < y1 - y0 + x1; x += dx){
+            float
+                    nx0 = x,
+                    ny0 = y1,
+                    nx1 = x0,
+                    ny1 = y1 - (x - x0);
+
+            if (nx0 > x1){
+                nx0 = x1;
+                ny0 = y1 - (x - x1);
+            }
+
+            if (ny1 < y0){
+                nx1 = x0 + (y0 - ny1);
+                ny1 = y0;
+            }
+
+            canvas.drawLine(nx0, ny0, nx1, ny1, paint);
+        }
+
+        paint.setColor(Color.BLACK);
+        canvas.drawRect(x0, y0, x1, y1, paint);
     }
 
     private void drawBench(float x0, float y0, float x1, float y1, Canvas canvas){
@@ -140,7 +226,7 @@ public class MyDraw extends View {
 
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1);
+        paint.setStrokeWidth(strokeWidth);
 
         canvas.drawRect(x0, y0, x1, y0 + heightBenchTop, paint);
         canvas.drawRect(xBenchBottom1, yBenchBottom,
@@ -156,6 +242,7 @@ public class MyDraw extends View {
 
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(strokeWidth);
         canvas.drawLine(x0, y0, x1, y0, paint);
     }
 
@@ -174,7 +261,8 @@ public class MyDraw extends View {
 
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1);
+        paint.setStrokeWidth(strokeWidth);
+        paint.setStrokeWidth(2);
         canvas.drawOval(x0, y0, x1, yTrunk0, paint);
 
 
