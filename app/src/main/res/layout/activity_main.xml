@@ -4,17 +4,4 @@
     android:layout_width="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/SCROLLER_ID"
-        android:fillViewport="true"
-        android:scrollbars="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/temp_txt"
-            android:gravity="center"/>
-    </ScrollView>
-
 </LinearLayout>
