@@ -52,6 +52,8 @@ public class MainActivity extends FragmentActivity {
                 hasResult = false;
                 hasOperation = false;
                 hasPoint = false;
+
+
             }
 
             if (hasOperation && countChar != 0){
@@ -73,6 +75,11 @@ public class MainActivity extends FragmentActivity {
 
             if(countChar == 0 && (!operation.equals("-") || hasOperation) )
                 return;
+
+            if(countChar == 0){
+                textView1.setText(operation);
+                return;
+            }
 
             hasOperation = true;
 
@@ -196,8 +203,8 @@ public class MainActivity extends FragmentActivity {
             string = string.substring(1);
         }
 
-        if(string.charAt(0) == '-'){
-            string = "0\u200B" + string;
+        if(string.charAt(0) == '-' && string.charAt(1) == '\u200B'){
+            string = string.substring(0, 1) + string.substring(2);
         }
 
         if(string.charAt(string.length() - 1) == '='){
