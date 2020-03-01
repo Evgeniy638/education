@@ -15,4 +15,7 @@
     <string name="thursday">ЧТ</string>
     <string name="friday">ПТ</string>
     <string name="saturday">СБ</string>
+    <string name="c">C</string>
+    <string name="backspace">Backspace</string>
+    <string name="equally">=</string>
 </resources>
