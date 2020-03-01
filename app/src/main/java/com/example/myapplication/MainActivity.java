@@ -83,6 +83,10 @@ public class MainActivity extends FragmentActivity {
                 hasPoint = false;
             }
 
+            if(textView1.getText().length() + textView2.getText().length() == 0
+                    && !operation.equals("-"))
+                return;
+
             hasOperation = true;
 
             String newText = "" + textView1.getText() + textView2.getText() + operation;
@@ -107,7 +111,8 @@ public class MainActivity extends FragmentActivity {
                 hasPoint = false;
             }
 
-            if(hasResult) return;
+            if(hasResult || textView1.getText().length() + textView2.getText().length() == 0)
+                return;
 
             hasResult = true;
             hasPoint = false;
@@ -156,6 +161,14 @@ public class MainActivity extends FragmentActivity {
     }
 
     public static void backspace(){
+        if(hasResult){
+            textView1.setText("");
+            textView2.setTextColor(Color.BLACK);
+
+            hasResult = false;
+            hasOperation = false;
+        }
+
         String text = textView2.getText().toString();
 
         if (!text.equals("") && text.charAt(text.length() - 1) == '.'){
