@@ -118,7 +118,6 @@ public class MainActivity extends FragmentActivity {
 
             hasResult = true;
             hasPoint = false;
-            countChar = textView2.getText().length();
 
             String newText = textView1.getText() + "\u200B" +
                     textView2.getText() + "\u200B" + operation;
@@ -128,6 +127,8 @@ public class MainActivity extends FragmentActivity {
             String result = calculate(textView1.getText().toString()) + "";
             textView2.setText(result);
             textView2.setTextColor(Color.GREEN);
+
+            countChar = textView2.getText().length();
         }else {
 
             if(hasResult){
@@ -144,6 +145,10 @@ public class MainActivity extends FragmentActivity {
                     textView2.getText().length() + 1 > 9){
                 return;
             }
+
+            if(operation.equals("0") && textView2.getText().length() == 1
+                    && textView2.getText().charAt(0) == '0')
+                return;
 
             if(operation.equals(".")){
                 if(hasPoint) return;
@@ -185,6 +190,9 @@ public class MainActivity extends FragmentActivity {
 
         textView2.setText(newText);
         if (text.length() != 0) countChar--;
+
+        if(textView2.getText().length() == 0 && countChar > 0)
+            hasOperation = true;
     }
 
     public static void clear(){
