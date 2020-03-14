@@ -6,28 +6,12 @@
     android:orientation="vertical"
     android:layout_gravity="bottom">
 
-    <TextView
-        android:layout_margin="10dp"
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textSize="16pt"
-        android:gravity="center_vertical|right"/>
-
-    <TextView
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:textSize="18pt"
-        android:gravity="center_vertical|right"/>
-
-   <fragment
-       android:layout_margin="10dp"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       class="com.example.myapplication.ButtonFragment"
-       android:id="@+id/TODO"
-       tools:layout="@layout/button_fragment" />
+        android:layout_height="match_parent"
+        android:id="@+id/listView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
 </LinearLayout>
