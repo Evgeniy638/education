@@ -37,18 +37,18 @@ public class MyThread extends Thread {
             try {
                 canvas.drawColor(Color.BLUE);
 
-//                p.setColor(Color.YELLOW);
-//                r += 5;
-//                canvas.drawCircle(x, y, r, p);
+                p.setColor(Color.YELLOW);
+                r += 5;
+                canvas.drawCircle(x, y, r, p);
             }finally {
                 surfaceHolder.unlockCanvasAndPost(canvas);
             }
 
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                Thread.sleep(1000 / 60);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

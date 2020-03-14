@@ -17,7 +17,7 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         myThread = new MyThread(getContext(), getHolder());
-        myThread.run();
+        myThread.start();
     }
 
     @Override
