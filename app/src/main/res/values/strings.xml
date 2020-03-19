@@ -4,8 +4,8 @@
     <string name="title">Чемпионат мира по футболу</string>
     <string name="teamhomefield">Команда хозяев</string>
     <string name="teamguestfield">Команда гостей</string>
-    <string name="goalshomefield">Голы хозяев</string>
-    <string name="goalsguestfield">Голы гостей</string>
+    <string name="betshomefield">Ставки на хозяев</string>
+    <string name="betsguestfield">Ставки на гостей</string>
     <string name="save">Сохранить</string>
     <string name="edit">Редактировать</string>
     <string name="delete">Удалить</string>

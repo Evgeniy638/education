@@ -91,13 +91,13 @@
                     <TextView
                         android:layout_width="123dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/goalshomefield"/>
+                        android:text="@string/betshomefield"/>
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/GoalsHome"
-                        android:inputType="text"/>
+                        android:id="@+id/BetHome"
+                        android:inputType="number"/>
 
                 </LinearLayout>
 
@@ -109,13 +109,13 @@
                     <TextView
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/goalsguestfield"/>
+                        android:text="@string/betsguestfield"/>
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/GoalsHomeGuest"
-                        android:inputType="text"/>
+                        android:id="@+id/BetGuest"
+                        android:inputType="number"/>
 
                 </LinearLayout>
             </LinearLayout>

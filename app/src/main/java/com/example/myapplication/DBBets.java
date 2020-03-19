@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class DBMatches{
+public class DBBets {
     private static final String DATABASE_NAME = "simple.db";
     private static final int DATABASE_VERSION = 1;
     private final String TABLE_NAME = "BETS";
@@ -29,7 +29,7 @@ public class DBMatches{
 
     private SQLiteDatabase mDataBase;
 
-    DBMatches(Context context){
+    DBBets(Context context){
         OpenHelper openHelper = new OpenHelper(context);
         mDataBase = openHelper.getWritableDatabase();
     }
@@ -40,8 +40,7 @@ public class DBMatches{
         cv.put(COLUMN_NAME_TEAM_GUEST, bet.getTeamGuest());
         cv.put(COLUMN_BET_TEAM_HOME, bet.getBetTeamHome());
         cv.put(COLUMN_BET_TEAM_GUEST, bet.getBetTeamGuest());
-        return mDataBase.update(TABLE_NAME, cv, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(bet.getId())});
+        return mDataBase.insert(TABLE_NAME, null, cv);
     }
 
     public void deleteAll(){
@@ -65,6 +64,16 @@ public class DBMatches{
         int betTeamGuest = cursor.getInt(NUM_COLUMN_BETGUEST);
 
         return new Bet(id, teamHome, teamGuest, betTeamHome, betTeamGuest);
+    }
+
+    public  int getLastId(){
+        Cursor cursor = mDataBase.query(TABLE_NAME, null, null,
+                null, null, null, null);
+
+        if(!cursor.moveToLast())
+            return -1;
+
+        return cursor.getInt(NUM_COLUMN_ID);
     }
 
     public ArrayList<Bet> selectAll(){

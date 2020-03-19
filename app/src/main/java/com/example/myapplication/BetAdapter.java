@@ -12,9 +12,29 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class BetAdapter extends ArrayAdapter<Bet> {
-    public BetAdapter(@NonNull Context context, @NonNull Bet[] objects) {
-        super(context, R.layout.adapter_item, objects);
+    ArrayList<Bet> bets;
+
+    public BetAdapter(@NonNull Context context, @NonNull ArrayList<Bet> bets) {
+        super(context, R.layout.item);
+        setBets(bets);
+    }
+
+    public void setBets(ArrayList<Bet> bets){
+        this.bets = bets;
+    }
+
+    @Nullable
+    @Override
+    public Bet getItem(int position) {
+        return bets.get(getCount() - position - 1);
+    }
+
+    @Override
+    public int getCount() {
+        return bets.size();
     }
 
     @SuppressLint("SetTextI18n")
@@ -29,10 +49,10 @@ public class BetAdapter extends ArrayAdapter<Bet> {
         }
 
         if (bet != null) {
-            ((TextView)convertView.findViewById(R.id.TeamHome)).setText(bet.teamHome);
-            ((TextView)convertView.findViewById(R.id.TeamGuest)).setText(bet.teamGuest);
+            ((TextView)convertView.findViewById(R.id.TeamHome)).setText(bet.getTeamHome());
+            ((TextView)convertView.findViewById(R.id.TeamGuest)).setText(bet.getTeamGuest());
             ((TextView)convertView.findViewById(R.id.TeamBet))
-                    .setText(bet.betGuestHome + " : " + bet.betGuestHome);
+                    .setText(bet.getBetTeamHome() + " : " + bet.getBetTeamGuest());
         }
 
         return convertView;
