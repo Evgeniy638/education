@@ -13,60 +13,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MyCompanyAdapter adapter = new MyCompanyAdapter(this, makeCompanies());
+        BetAdapter adapter = new BetAdapter(this, getBets());
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
     }
 
-    MyCompany[] makeCompanies(){
-        MyCompany[] arr = new MyCompany[10];
-
-        String[] names = {
-                "Electronic Arts",
-                "Яндекс",
-                "Google",
-                "Apple",
-                "Facebook",
-                "IBM",
-                "Microsoft",
-                "Сбребанк",
-                "Oracle",
-                "Blizzard"
-        };
-
-        int[] pictures = {
-                R.drawable.electronic_arts,
-                R.drawable.yandex,
-                R.drawable.google,
-                R.drawable.apple,
-                R.drawable.facebook,
-                R.drawable.ibm,
-                R.drawable.microsoft,
-                R.drawable.sberbank,
-                R.drawable.oracle,
-                R.drawable.blizzard
-        };
-
-        double[] costs = {
-                97.06,
-                33.94,
-                1214.27,
-                277.97,
-                170.28,
-                107.95,
-                158.83,
-                2.71,
-                47.93,
-                59.04
-        };
-
-        for (int i = 0; i < arr.length; i++){
-            arr[i] = new MyCompany();
-            arr[i].name = names[i];
-            arr[i].picture = pictures[i];
-            arr[i].cost = costs[i];
-        }
-
-        return arr;
+    private Bet[] getBets(){
+        Bet[] bets = new Bet[10];
+        return bets;
     }
 }
