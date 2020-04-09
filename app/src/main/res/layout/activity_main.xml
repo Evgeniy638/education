@@ -1,56 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginStart="10dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.myapplication.MainActivity">
 
-
-    <TextView
+    <EditText
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12pt"
-        android:text="Окно авторизации"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName" />
 
 
     <EditText
-        android:id="@+id/login"
-        android:layout_width="200dp"
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="10pt"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/name"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="200dp"
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="10pt"/>
+        android:text="Save"
+        android:layout_below="@+id/phone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:layout_below="@+id/save"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:id="@+id/contactsList"
+        android:layout_below="@+id/show"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    </ListView>
 
-
-        <Button
-            android:id="@+id/auth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/auth"/>
-
-
-        <Button
-            android:id="@+id/goRegistration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/registration"/>
-
-
-    </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="11pt"/>
-</LinearLayout>
+</RelativeLayout>
