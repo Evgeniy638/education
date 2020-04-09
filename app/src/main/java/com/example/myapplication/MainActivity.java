@@ -1,59 +1,130 @@
 package com.example.myapplication;
 
-
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
+import android.content.OperationApplicationException;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.os.RemoteException;
+import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-    private DBBets db;
-    BetAdapter adapter;
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+    private ListView listView;
+    private Button save, show;
+    private EditText name, phone;
+
+    private SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db = new DBBets(this);
+        listView = findViewById(R.id.contactsList);
 
-        adapter = new BetAdapter(this, db.selectAll());
-        ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(adapter);
+        save = findViewById(R.id.save);
+        show = findViewById(R.id.show);
 
-        findViewById(R.id.butSave).setOnClickListener(new View.OnClickListener() {
+        name = findViewById(R.id.name);
+        phone = findViewById(R.id.phone);
+
+        show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int id = db.getLastId() + 1;
-                String teamHome = ((TextView)findViewById(R.id.TeamHome)).getText().toString();
-                String teamGuest = ((TextView)findViewById(R.id.TeamGuest)).getText().toString();
-                int betHome = Integer.parseInt(((TextView)findViewById(R.id.BetHome))
-                        .getText().toString());
-                int betGuest = Integer.parseInt(((TextView)findViewById(R.id.BetGuest))
-                        .getText().toString());
+                adapter = new SimpleCursorAdapter(getApplicationContext(),
+                        android.R.layout.simple_list_item_2, null,
+                        new String[] { ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                                ContactsContract.CommonDataKinds.Phone.NUMBER},
+                        new int[] { android.R.id.text1, android.R.id.text2 }, 0);
 
-                Bet bet = new Bet(id, teamHome, teamGuest, betHome, betGuest);
+                listView.setAdapter(adapter);
 
-                db.insert(bet);
-
-                adapter.setBets(db.selectAll());
-                adapter.notifyDataSetChanged();
+                getSupportLoaderManager().initLoader(0, null, MainActivity.this);
             }
         });
 
-        findViewById(R.id.butCancel).setOnClickListener(new View.OnClickListener() {
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((TextView)findViewById(R.id.TeamHome)).setText("");
-                ((TextView)findViewById(R.id.TeamGuest)).setText("");
-                ((TextView)findViewById(R.id.BetHome)).setText("");
-                ((TextView)findViewById(R.id.BetGuest)).setText("");
+                String contactName = name.getText().toString();
+                String contactPhone = name.getText().toString();
+
+                addContact(contactName, contactPhone);
+
+                Toast.makeText(getApplicationContext(),"Contact added", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        return new CursorLoader(this,
+                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                new String[]{
+                        ContactsContract.CommonDataKinds.Phone._ID,
+                        ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                        ContactsContract.CommonDataKinds.Phone.NUMBER,
+                        ContactsContract.CommonDataKinds.Phone.PHOTO_ID
+                }, null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+        adapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+        adapter.swapCursor(null);
+    }
+
+    private void addContact(String name, String phone){
+        ArrayList<ContentProviderOperation> ops = new ArrayList<>();
+        int rawContactInsertIndex = ops.size();
+
+        ops.add(ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null).build());
+
+        ops.add(ContentProviderOperation
+                .newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, rawContactInsertIndex)
+                .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, name)
+                .build()
+        );
+
+        ops.add(ContentProviderOperation
+                .newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, rawContactInsertIndex)
+                .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, phone)
+                .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
+                .build()
+        );
+
+        try {
+            ContentProviderResult[] results = getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops)  ;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (OperationApplicationException e) {
+            e.printStackTrace();
+        }
     }
 }
