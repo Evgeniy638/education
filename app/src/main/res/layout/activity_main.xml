@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.myapplication.MainActivity">
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/imageList">
-    </ListView>
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/authorize"
+        android:textSize="14pt"/>
+
+    <EditText
+        android:id="@+id/login_auth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14pt"
+        android:hint="@string/login"/>
+
+    <EditText
+        android:id="@+id/pass_auth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14pt"
+        android:hint="@string/password"/>
+
+    <Button
+        android:id="@+id/auth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10pt"
+        android:text="@string/auth"/>
+
+    <Button
+        android:id="@+id/go_to_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10pt"
+        android:text="@string/registration"/>
+
+</LinearLayout>

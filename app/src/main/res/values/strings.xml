@@ -1,19 +1,8 @@
 <resources>
-    <string name="app_name">пример 4.10.27</string>
-    <string name="hello">Hello World, SimpleDBActivity!</string>
-    <string name="title">Чемпионат мира по футболу</string>
-    <string name="teamhomefield">Команда хозяев</string>
-    <string name="teamguestfield">Команда гостей</string>
-    <string name="betshomefield">Ставки на хозяев</string>
-    <string name="betsguestfield">Ставки на гостей</string>
-    <string name="save">Сохранить</string>
-    <string name="edit">Редактировать</string>
-    <string name="delete">Удалить</string>
-    <string name="cancel">Отмена</string>
-    <string name="icon">Icon</string>
-    <string name="deleteAll">Удалить все</string>
-    <string name="exit">Выход</string>
-    <string name="add">Добавить</string>
-    <string name="auth">Авторизоваться</string>
+    <string name="authorize">Авторизация</string>
     <string name="registration">Зарегестрироваться</string>
+    <string name="password">Введите пароль</string>
+    <string name="login">Введите логин</string>
+    <string name="auth">Авторизоваться</string>
+    <string name="registration_text">Регистрация</string>
 </resources>
